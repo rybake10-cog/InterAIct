@@ -126,7 +126,7 @@
         {
           "id": "new_kid",
           "title": "Someone New",
-          "scene": "🏫 🧒 ❓",
+          "scene": "🏫 🧒 ❔",
           "prompt": "There is a new kid in class today. They are sitting by themselves. What could I do?",
           "choices": [
             { "id": "a", "icon": "👋", "kind": "great", "next": "greeting",
@@ -340,7 +340,7 @@
         {
           "id": "new_plan",
           "title": "Asking What Happens Next",
-          "scene": "❓ 📋",
+          "scene": "❔ 📋",
           "prompt": "I feel a little calmer. I want to know what will happen instead. What can I do?",
           "choices": [
             { "id": "a", "icon": "🙋", "kind": "great", "next": "try_it",
@@ -550,7 +550,7 @@
         {
           "id": "stuck",
           "title": "I'm Stuck",
-          "scene": "📝 ❓ 🧒",
+          "scene": "📝 ❔ 🧒",
           "prompt": "I am doing my worksheet in class. I do not understand question 3. What can I do?",
           "choices": [
             { "id": "a", "icon": "✋", "kind": "great", "next": "wait",

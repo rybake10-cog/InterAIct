@@ -8,11 +8,12 @@ InterAIct is an AI-powered interactive learning app designed to help autistic ch
 
 1. [Features](#features)
 2. [Preview](#preview)
-3. [Prerequisite](#prerequisite)
-4. [Usage](#usage)
-5. [Team](#team)
-6. [Acknowledgments](#acknowledgments)
-7. [License](#license)
+3. [iPhone & iPad App](#iphone--ipad-app)
+4. [Prerequisite](#prerequisite)
+5. [Usage](#usage)
+6. [Team](#team)
+7. [Acknowledgments](#acknowledgments)
+8. [License](#license)
 
 ## Features
 
@@ -29,6 +30,10 @@ InterAIct is an AI-powered interactive learning app designed to help autistic ch
 ![AI Learning Screenshot](screenshots/choosing_avatars.png)
 ![AI Learning Screenshot](screenshots/process.png)
 ![AI Learning Screenshot](screenshots/report.png)
+
+## iPhone & iPad App
+
+A native SwiftUI app for iPhone and iPad (built with Xcode on macOS) is in [`ios/`](ios/README.md). It has 8 social situations, read-aloud support, feelings check-ins, a Calm Corner, and a grown-ups progress area. Everything runs on the device.
 
 ## Prerequisite
 

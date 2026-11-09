@@ -1,0 +1,679 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "taking-turns",
+      "title": "Taking Turns",
+      "summary": "Learn how to take turns and share toys with friends.",
+      "icon": "🧸",
+      "color": "#F7B267",
+      "skill": "Sharing",
+      "startPhaseID": "toys",
+      "phases": [
+        {
+          "id": "toys",
+          "title": "Taking Turns with Toys",
+          "scene": "🧸 👦 👧",
+          "video": "scenario_1_phase_toys",
+          "prompt": "Do you like playing with toys? I love toys too! If we both want to play with the same toy, what should we do?",
+          "choices": [
+            { "id": "a", "icon": "😬", "kind": "tryAgain", "next": "trading",
+              "text": "Take the toy from my friend.",
+              "feedback": "If we take the toy without asking, our friend might feel sad. Let's try asking first." },
+            { "id": "b", "icon": "😊", "kind": "great", "next": "trading",
+              "text": "Ask, \"Can I have a turn, please?\"",
+              "feedback": "Great job! Asking nicely helps friends want to share. Sometimes they say \"no\", and that is okay. We can wait for our turn." },
+            { "id": "c", "icon": "😕", "kind": "okay", "next": "trading",
+              "text": "Walk away and say nothing.",
+              "feedback": "Walking away is okay. If you really want to play, you can try asking first. Maybe your friend will share." }
+          ]
+        },
+        {
+          "id": "trading",
+          "title": "Trading Toys",
+          "scene": "🚗 🔄 🦖",
+          "video": "scenario_1_phase_trading",
+          "prompt": "My friend is playing with a toy I like. I have a different toy. What can I do?",
+          "choices": [
+            { "id": "a", "icon": "😬", "kind": "tryAgain", "next": "timer",
+              "text": "Grab the toy from my friend.",
+              "feedback": "If we grab a toy, our friend might feel upset. Let's try offering a trade instead." },
+            { "id": "b", "icon": "😊", "kind": "great", "next": "timer",
+              "text": "Offer to trade my toy for theirs.",
+              "feedback": "That is so kind! Trading is a great way to share. Now you both have something fun." },
+            { "id": "c", "icon": "😢", "kind": "tryAgain", "next": "timer",
+              "text": "Get upset and walk away.",
+              "feedback": "It is hard when you really want a toy. You can ask, \"Do you want to trade?\" Then you both can be happy." }
+          ]
+        },
+        {
+          "id": "timer",
+          "title": "Using a Timer",
+          "scene": "⏱️ 🧩",
+          "video": "scenario_1_phase_timer",
+          "prompt": "Someone else is already using the toy. We could use a timer so everyone gets a turn. What should I do?",
+          "choices": [
+            { "id": "a", "icon": "⏱️", "kind": "great", "next": "waiting",
+              "text": "Use a timer and wait for my turn.",
+              "feedback": "Great job! A timer makes turns fair. When the timer beeps, it is your turn." },
+            { "id": "b", "icon": "🗣️", "kind": "tryAgain", "next": "waiting",
+              "text": "Keep asking my friend again and again.",
+              "feedback": "Asking many times can make our friend feel stressed. A timer helps everyone know when it is their turn." },
+            { "id": "c", "icon": "😢", "kind": "tryAgain", "next": "waiting",
+              "text": "Get upset and leave.",
+              "feedback": "Waiting is hard. A timer shows us exactly how long to wait. Let's give it a try." }
+          ]
+        },
+        {
+          "id": "waiting",
+          "title": "Waiting for My Turn",
+          "scene": "⏳ 🎨",
+          "video": "scenario_1_phase_waiting",
+          "prompt": "My friend is not ready to share yet, and that is okay. What can I do while I wait?",
+          "choices": [
+            { "id": "a", "icon": "🙋", "kind": "great", "next": "adult_help",
+              "text": "Ask my friend to tell me when they are done, and play with something else.",
+              "feedback": "Smart choice! Now you can play with something else while you wait." },
+            { "id": "b", "icon": "😬", "kind": "tryAgain", "next": "adult_help",
+              "text": "Take the toy anyway.",
+              "feedback": "Taking the toy might make our friend sad. Let's ask them to tell us when they are done." },
+            { "id": "c", "icon": "😣", "kind": "okay", "next": "adult_help",
+              "text": "Stand still and feel upset.",
+              "feedback": "It is okay to feel upset. Waiting can be tough. You can ask your friend when they will be done, and find something else to do." }
+          ]
+        },
+        {
+          "id": "adult_help",
+          "title": "Asking an Adult for Help",
+          "scene": "🧑‍🏫 🧸",
+          "video": "scenario_1_phase_adult_help",
+          "prompt": "We tried asking, trading, and waiting, but it still does not feel fair. What can I do?",
+          "choices": [
+            { "id": "a", "icon": "🧑‍🏫", "kind": "great", "next": "celebrating",
+              "text": "Ask a teacher or parent for help.",
+              "feedback": "Great choice! Adults can help make sure everyone gets a turn." },
+            { "id": "b", "icon": "😠", "kind": "tryAgain", "next": "celebrating",
+              "text": "Yell at my friend.",
+              "feedback": "Yelling can make things harder. Let's try asking an adult to help instead." },
+            { "id": "c", "icon": "😔", "kind": "okay", "next": "celebrating",
+              "text": "Give up and walk away.",
+              "feedback": "Taking a break is okay. You can also ask an adult for help. That is what they are there for." }
+          ]
+        },
+        {
+          "id": "celebrating",
+          "title": "Celebrating Good Choices",
+          "scene": "🎉 🧸 🎉",
+          "video": "scenario_1_phase_celebrating",
+          "prompt": "You learned so much about taking turns! You can ask, trade, use a timer, wait, or ask an adult. Are you ready to play with friends?",
+          "choices": [
+            { "id": "a", "icon": "🎉", "kind": "great", "next": null,
+              "text": "I am ready to play with friends!",
+              "feedback": "Fantastic! You know all about taking turns now." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "saying-hello",
+      "title": "Saying Hello",
+      "summary": "Practice greeting someone new at school.",
+      "icon": "👋",
+      "color": "#7FC8A9",
+      "skill": "Greetings",
+      "startPhaseID": "new_kid",
+      "phases": [
+        {
+          "id": "new_kid",
+          "title": "Someone New",
+          "scene": "🏫 🧒 ❓",
+          "prompt": "There is a new kid in class today. They are sitting by themselves. What could I do?",
+          "choices": [
+            { "id": "a", "icon": "👋", "kind": "great", "next": "greeting",
+              "text": "Walk over and say hello.",
+              "feedback": "Nice! Saying hello is a friendly way to help someone feel welcome." },
+            { "id": "b", "icon": "🙈", "kind": "okay", "next": "greeting",
+              "text": "Stay in my seat and say nothing.",
+              "feedback": "That is okay if you are not ready. When you feel ready, a small wave or \"hi\" can help a new kid feel welcome." },
+            { "id": "c", "icon": "🤗", "kind": "tryAgain", "next": "greeting",
+              "text": "Run over and give them a big hug.",
+              "feedback": "Hugs are for people we know well, and we ask first. With someone new, a wave or \"hello\" is better." }
+          ]
+        },
+        {
+          "id": "greeting",
+          "title": "How to Say Hi",
+          "scene": "🧒 👋 🧒",
+          "prompt": "I am standing near the new kid. Which way of saying hello is friendly?",
+          "choices": [
+            { "id": "a", "icon": "🙂", "kind": "great", "next": "name",
+              "text": "Say \"Hi, I'm\" and my name in a calm voice.",
+              "feedback": "Great! You can look at their face or near them, whatever feels comfortable for you." },
+            { "id": "b", "icon": "📢", "kind": "tryAgain", "next": "name",
+              "text": "Shout \"HELLO!\" really loudly.",
+              "feedback": "A loud voice can be a surprise. An inside voice is easier for people to hear comfortably." },
+            { "id": "c", "icon": "✋", "kind": "great", "next": "name",
+              "text": "Smile and wave.",
+              "feedback": "A wave is a great way to say hi without words!" }
+          ]
+        },
+        {
+          "id": "name",
+          "title": "Asking Their Name",
+          "scene": "🧒 💬 🏷️",
+          "prompt": "The new kid waves back. What can I say next?",
+          "choices": [
+            { "id": "a", "icon": "💬", "kind": "great", "next": "quiet",
+              "text": "Ask, \"What's your name?\"",
+              "feedback": "Good question! Learning someone's name is a great way to start being friends." },
+            { "id": "b", "icon": "🦕", "kind": "okay", "next": "quiet",
+              "text": "Talk for a long time about my favorite dinosaurs.",
+              "feedback": "Sharing what you love is great! First, ask their name. Then you can ask, \"Do you like dinosaurs?\"" },
+            { "id": "c", "icon": "🚶", "kind": "tryAgain", "next": "quiet",
+              "text": "Walk away without saying anything.",
+              "feedback": "They might wonder where you went. You can say \"What's your name?\" or \"Bye, see you later!\"" }
+          ]
+        },
+        {
+          "id": "quiet",
+          "title": "When They Are Quiet",
+          "scene": "🧒 … 🧒",
+          "prompt": "I asked their name, but they did not answer right away. Maybe they feel shy. What can I do?",
+          "choices": [
+            { "id": "a", "icon": "⏳", "kind": "great", "next": "hello_done",
+              "text": "Wait a little and give them time.",
+              "feedback": "Great patience! Some people need more time to answer. That is okay." },
+            { "id": "b", "icon": "📢", "kind": "tryAgain", "next": "hello_done",
+              "text": "Ask again louder and louder.",
+              "feedback": "A louder voice can make a shy person feel more nervous. Try waiting a little instead." },
+            { "id": "c", "icon": "🙂", "kind": "great", "next": "hello_done",
+              "text": "Say, \"That's okay. See you later!\"",
+              "feedback": "Kind words! You let them know it is okay, and you can try again another time." }
+          ]
+        },
+        {
+          "id": "hello_done",
+          "title": "You Did It!",
+          "scene": "🎉 👋 🎉",
+          "prompt": "You know how to say hello! Walk over, say hi or wave, ask their name, and give them time.",
+          "choices": [
+            { "id": "a", "icon": "🎉", "kind": "great", "next": null,
+              "text": "I can say hello!",
+              "feedback": "Wonderful! Saying hello is the first step to making a friend." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joining-a-game",
+      "title": "Joining a Game",
+      "summary": "Learn how to ask to play with other kids at recess.",
+      "icon": "⚽",
+      "color": "#6FA8DC",
+      "skill": "Playing Together",
+      "startPhaseID": "watch",
+      "phases": [
+        {
+          "id": "watch",
+          "title": "At Recess",
+          "scene": "🛝 ⚽ 👧👦",
+          "prompt": "Some kids are playing ball at recess. I want to play too. What should I do first?",
+          "choices": [
+            { "id": "a", "icon": "👀", "kind": "great", "next": "ask",
+              "text": "Watch for a minute to learn the game.",
+              "feedback": "Smart! Watching first helps you learn the rules before you join." },
+            { "id": "b", "icon": "🏃", "kind": "tryAgain", "next": "ask",
+              "text": "Run in and grab the ball.",
+              "feedback": "The other kids might be surprised. Let's watch first, then ask to join." },
+            { "id": "c", "icon": "😞", "kind": "okay", "next": "ask",
+              "text": "Stand far away and hope they ask me.",
+              "feedback": "They might not know you want to play. You can walk closer and ask them." }
+          ]
+        },
+        {
+          "id": "ask",
+          "title": "Asking to Play",
+          "scene": "🧒 💬 ⚽",
+          "prompt": "There is a break in the game. What can I say?",
+          "choices": [
+            { "id": "a", "icon": "🙋", "kind": "great", "next": "answer",
+              "text": "Ask, \"Can I play too?\"",
+              "feedback": "Great asking! A short, friendly question is a great way to join." },
+            { "id": "b", "icon": "📏", "kind": "okay", "next": "answer",
+              "text": "Say, \"You're playing it wrong. Here are the real rules.\"",
+              "feedback": "Every group can have its own rules. Ask to join first, and play their way." },
+            { "id": "c", "icon": "🤫", "kind": "tryAgain", "next": "answer",
+              "text": "Stand in the middle of the game without asking.",
+              "feedback": "Standing in the game can get in the way. Asking \"Can I play?\" lets everyone know." }
+          ]
+        },
+        {
+          "id": "answer",
+          "title": "If They Say \"Not Now\"",
+          "scene": "🧒 ✋ ⚽",
+          "prompt": "One kid says, \"Not right now, the teams are full.\" I feel disappointed. What can I do?",
+          "choices": [
+            { "id": "a", "icon": "🛝", "kind": "great", "next": "joined",
+              "text": "Say \"Okay\" and find something else to do, or ask to play next game.",
+              "feedback": "That is a calm, flexible choice! You can ask again later, or play something else." },
+            { "id": "b", "icon": "😠", "kind": "tryAgain", "next": "joined",
+              "text": "Yell, \"That's not fair!\"",
+              "feedback": "Feeling disappointed is okay. Yelling can make it harder. Try \"Okay, can I play next time?\"" },
+            { "id": "c", "icon": "🧑‍🏫", "kind": "great", "next": "joined",
+              "text": "Ask a teacher to help me find a game.",
+              "feedback": "Good idea! Teachers can help you find a game to join." }
+          ]
+        },
+        {
+          "id": "joined",
+          "title": "Playing Together",
+          "scene": "⚽ 😀 😀",
+          "prompt": "The next game starts and they say, \"You can play now!\" During the game, what is a friendly thing to do?",
+          "choices": [
+            { "id": "a", "icon": "👍", "kind": "great", "next": "game_done",
+              "text": "Follow the rules and pass the ball to others.",
+              "feedback": "Great teamwork! Passing and following rules makes the game fun for everyone." },
+            { "id": "b", "icon": "🙅", "kind": "tryAgain", "next": "game_done",
+              "text": "Keep the ball the whole time.",
+              "feedback": "Other kids want a turn too. Passing the ball helps everyone have fun." },
+            { "id": "c", "icon": "🙌", "kind": "great", "next": "game_done",
+              "text": "Say \"Nice try!\" when someone misses.",
+              "feedback": "So kind! Encouraging words help friends feel good." }
+          ]
+        },
+        {
+          "id": "game_done",
+          "title": "You Did It!",
+          "scene": "🎉 ⚽ 🎉",
+          "prompt": "You know how to join a game! Watch first, ask \"Can I play?\", stay calm if they say \"not now\", and share the ball.",
+          "choices": [
+            { "id": "a", "icon": "🎉", "kind": "great", "next": null,
+              "text": "I can join a game!",
+              "feedback": "Awesome! Have fun playing with friends." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plans-change",
+      "title": "When Plans Change",
+      "summary": "Practice what to do when something unexpected happens.",
+      "icon": "🌧️",
+      "color": "#A99BD6",
+      "skill": "Flexibility",
+      "startPhaseID": "news",
+      "phases": [
+        {
+          "id": "news",
+          "title": "Unexpected News",
+          "scene": "🌳 ➡️ 🌧️",
+          "prompt": "We were going to the park today. Now it is raining, so we cannot go. I feel upset. What can I do first?",
+          "choices": [
+            { "id": "a", "icon": "🗣️", "kind": "great", "next": "breathe",
+              "text": "Say how I feel: \"I feel disappointed.\"",
+              "feedback": "Great job using words! Naming your feeling helps grown-ups understand and help you." },
+            { "id": "b", "icon": "💥", "kind": "tryAgain", "next": "breathe",
+              "text": "Throw my things on the floor.",
+              "feedback": "Big feelings are okay. Throwing things can break them or hurt someone. Let's use words or take a breath." },
+            { "id": "c", "icon": "🎧", "kind": "great", "next": "breathe",
+              "text": "Go to my calm spot for a minute.",
+              "feedback": "Good choice! A calm spot can help your body feel better." }
+          ]
+        },
+        {
+          "id": "breathe",
+          "title": "Calming My Body",
+          "scene": "🎈 🌬️",
+          "prompt": "My body still feels tight and hot. What can help me calm down?",
+          "choices": [
+            { "id": "a", "icon": "🌬️", "kind": "great", "next": "new_plan",
+              "text": "Take slow breaths, like blowing up a balloon.",
+              "feedback": "Breathe in slowly... and out slowly. Slow breaths help your body feel calm." },
+            { "id": "b", "icon": "🤲", "kind": "great", "next": "new_plan",
+              "text": "Squeeze my hands or hug a pillow.",
+              "feedback": "Squeezing can help your body feel calmer. That is a great tool." },
+            { "id": "c", "icon": "😤", "kind": "tryAgain", "next": "new_plan",
+              "text": "Keep thinking about how unfair it is.",
+              "feedback": "It is okay to feel that way. Let's try a calming tool first, like slow breaths." }
+          ]
+        },
+        {
+          "id": "new_plan",
+          "title": "Asking What Happens Next",
+          "scene": "❓ 📋",
+          "prompt": "I feel a little calmer. I want to know what will happen instead. What can I do?",
+          "choices": [
+            { "id": "a", "icon": "🙋", "kind": "great", "next": "try_it",
+              "text": "Ask, \"What are we going to do instead?\"",
+              "feedback": "Great question! Knowing the new plan can make change feel less scary." },
+            { "id": "b", "icon": "📅", "kind": "great", "next": "try_it",
+              "text": "Ask, \"Can we go to the park another day?\"",
+              "feedback": "Good thinking! Sometimes plans can move to a new day." },
+            { "id": "c", "icon": "🙉", "kind": "okay", "next": "try_it",
+              "text": "Cover my ears and not listen.",
+              "feedback": "Covering ears can help when things are loud. When you are ready, listening to the new plan can help you feel better." }
+          ]
+        },
+        {
+          "id": "try_it",
+          "title": "Trying the New Plan",
+          "scene": "🏠 🧩 🍪",
+          "prompt": "The new plan is to build a puzzle and bake cookies at home. What can I do?",
+          "choices": [
+            { "id": "a", "icon": "🧩", "kind": "great", "next": "change_done",
+              "text": "Give the new plan a try.",
+              "feedback": "That is being flexible! New plans can be fun too." },
+            { "id": "b", "icon": "😒", "kind": "okay", "next": "change_done",
+              "text": "Say \"No\" to everything.",
+              "feedback": "It is okay to still feel disappointed. You can choose one thing from the new plan to try." }
+          ]
+        },
+        {
+          "id": "change_done",
+          "title": "You Did It!",
+          "scene": "🌈 🎉",
+          "prompt": "When plans change you can say how you feel, calm your body, ask what happens next, and try the new plan.",
+          "choices": [
+            { "id": "a", "icon": "🌈", "kind": "great", "next": null,
+              "text": "I can handle changes!",
+              "feedback": "Wonderful! Being flexible is a super skill." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "too-loud",
+      "title": "Too Loud!",
+      "summary": "Learn what to do when a place feels too loud or busy.",
+      "icon": "🔊",
+      "color": "#E99497",
+      "skill": "Calming Down",
+      "startPhaseID": "cafeteria",
+      "phases": [
+        {
+          "id": "cafeteria",
+          "title": "A Noisy Room",
+          "scene": "🍎 🔊 🔊 🔊",
+          "prompt": "The lunchroom is very loud. My body feels uncomfortable and my ears hurt. That is a real feeling. What can I do?",
+          "choices": [
+            { "id": "a", "icon": "🎧", "kind": "great", "next": "tell_adult",
+              "text": "Put on my headphones or cover my ears.",
+              "feedback": "Great choice! Headphones or covering your ears can make the noise smaller." },
+            { "id": "b", "icon": "🏃", "kind": "tryAgain", "next": "tell_adult",
+              "text": "Run out of the room without telling anyone.",
+              "feedback": "It makes sense to want to get away. Adults need to know where you are so you stay safe. Let's tell an adult first." },
+            { "id": "c", "icon": "😖", "kind": "okay", "next": "tell_adult",
+              "text": "Stay and try to ignore it.",
+              "feedback": "You are trying very hard! You do not have to just put up with it. There are tools that can help." }
+          ]
+        },
+        {
+          "id": "tell_adult",
+          "title": "Telling an Adult",
+          "scene": "🧒 💬 🧑‍🏫",
+          "prompt": "It is still too loud. How can I let an adult know I need help?",
+          "choices": [
+            { "id": "a", "icon": "🗣️", "kind": "great", "next": "break",
+              "text": "Say, \"It's too loud. I need a break.\"",
+              "feedback": "Great job! Telling an adult helps them help you." },
+            { "id": "b", "icon": "🃏", "kind": "great", "next": "break",
+              "text": "Show my break card.",
+              "feedback": "Perfect! A break card is a great way to ask without words." },
+            { "id": "c", "icon": "😱", "kind": "tryAgain", "next": "break",
+              "text": "Scream so they notice me.",
+              "feedback": "Screaming can make the room even louder. Try words or a break card instead." }
+          ]
+        },
+        {
+          "id": "break",
+          "title": "Taking a Break",
+          "scene": "🛋️ 🌿",
+          "prompt": "My teacher says I can go to the quiet corner. What can I do there?",
+          "choices": [
+            { "id": "a", "icon": "🌬️", "kind": "great", "next": "return",
+              "text": "Take slow breaths.",
+              "feedback": "Slow breaths help your body feel calm again." },
+            { "id": "b", "icon": "🌀", "kind": "great", "next": "return",
+              "text": "Use my fidget, rock, or move in a way that helps me.",
+              "feedback": "Moving your body in ways that feel good is a great calming tool." },
+            { "id": "c", "icon": "📖", "kind": "great", "next": "return",
+              "text": "Look at a favorite book quietly.",
+              "feedback": "A quiet activity can help you feel calm." }
+          ]
+        },
+        {
+          "id": "return",
+          "title": "Feeling Ready",
+          "scene": "🧒 ✅",
+          "prompt": "I feel calm now. What can I do next?",
+          "choices": [
+            { "id": "a", "icon": "👍", "kind": "great", "next": "loud_done",
+              "text": "Tell my teacher, \"I'm ready,\" and go back with my headphones.",
+              "feedback": "Great job! You used your tools and came back when you were ready." },
+            { "id": "b", "icon": "⏳", "kind": "great", "next": "loud_done",
+              "text": "Ask for a little more time if I need it.",
+              "feedback": "That is okay! Knowing when you need more time is an important skill." }
+          ]
+        },
+        {
+          "id": "loud_done",
+          "title": "You Did It!",
+          "scene": "🎧 🎉",
+          "prompt": "When it is too loud, you can use headphones, tell an adult, take a break, and go back when you are ready.",
+          "choices": [
+            { "id": "a", "icon": "🎉", "kind": "great", "next": null,
+              "text": "I know what to do when it is too loud!",
+              "feedback": "Wonderful! Taking care of your body is very important." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "losing-a-game",
+      "title": "Losing a Game",
+      "summary": "Practice being a good sport when you don't win.",
+      "icon": "🎲",
+      "color": "#F4D06F",
+      "skill": "Good Sport",
+      "startPhaseID": "lost",
+      "phases": [
+        {
+          "id": "lost",
+          "title": "The Game Is Over",
+          "scene": "🎲 🏁 😮",
+          "prompt": "I was playing a board game with my friend. My friend won. I feel frustrated. What can I do?",
+          "choices": [
+            { "id": "a", "icon": "🌬️", "kind": "great", "next": "say",
+              "text": "Take a deep breath.",
+              "feedback": "Great! A deep breath helps your body feel calmer when you are frustrated." },
+            { "id": "b", "icon": "🧹", "kind": "tryAgain", "next": "say",
+              "text": "Knock the game pieces off the table.",
+              "feedback": "Losing can feel really bad. Knocking pieces off can upset your friend. Try a deep breath first." },
+            { "id": "c", "icon": "😢", "kind": "okay", "next": "say",
+              "text": "Cry.",
+              "feedback": "It is okay to cry when you feel sad. When you are ready, you can take a deep breath." }
+          ]
+        },
+        {
+          "id": "say",
+          "title": "What to Say",
+          "scene": "🧒 🤝 🧒",
+          "prompt": "I feel a little calmer. What can I say to my friend?",
+          "choices": [
+            { "id": "a", "icon": "🤝", "kind": "great", "next": "next_time",
+              "text": "Say, \"Good game!\"",
+              "feedback": "That is being a good sport! Your friend will want to play again." },
+            { "id": "b", "icon": "😤", "kind": "tryAgain", "next": "next_time",
+              "text": "Say, \"You cheated!\"",
+              "feedback": "Saying \"You cheated\" can hurt feelings when it is not true. Try \"Good game!\"" },
+            { "id": "c", "icon": "🔁", "kind": "great", "next": "next_time",
+              "text": "Ask, \"Can we play again?\"",
+              "feedback": "Great idea! Playing again is a fun way to keep practicing." }
+          ]
+        },
+        {
+          "id": "next_time",
+          "title": "Win or Lose",
+          "scene": "🏆 😊 🎲",
+          "prompt": "We play again and this time I win! What can I do?",
+          "choices": [
+            { "id": "a", "icon": "😊", "kind": "great", "next": "sport_done",
+              "text": "Say, \"Good game, thanks for playing!\"",
+              "feedback": "Perfect! Good sports are kind when they win and when they lose." },
+            { "id": "b", "icon": "😝", "kind": "tryAgain", "next": "sport_done",
+              "text": "Say, \"Ha ha, you lost!\"",
+              "feedback": "Teasing can make your friend feel sad, the way you felt before. Try \"Good game!\"" }
+          ]
+        },
+        {
+          "id": "sport_done",
+          "title": "You Did It!",
+          "scene": "🎉 🎲 🎉",
+          "prompt": "Games are for fun. Win or lose, you can take a breath and say \"Good game!\"",
+          "choices": [
+            { "id": "a", "icon": "🎉", "kind": "great", "next": null,
+              "text": "I can be a good sport!",
+              "feedback": "Wonderful! Your friends will love playing with you." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "asking-for-help",
+      "title": "Asking for Help",
+      "summary": "Learn how to ask a teacher for help in class.",
+      "icon": "✋",
+      "color": "#8FB8DE",
+      "skill": "Asking for Help",
+      "startPhaseID": "stuck",
+      "phases": [
+        {
+          "id": "stuck",
+          "title": "I'm Stuck",
+          "scene": "📝 ❓ 🧒",
+          "prompt": "I am doing my worksheet in class. I do not understand question 3. What can I do?",
+          "choices": [
+            { "id": "a", "icon": "✋", "kind": "great", "next": "wait",
+              "text": "Raise my hand.",
+              "feedback": "Great job! Raising your hand tells the teacher you need help." },
+            { "id": "b", "icon": "🗑️", "kind": "tryAgain", "next": "wait",
+              "text": "Crumple up the paper.",
+              "feedback": "Feeling stuck is frustrating. Crumpling the paper means you lose your work. Let's ask for help instead." },
+            { "id": "c", "icon": "📢", "kind": "okay", "next": "wait",
+              "text": "Call out, \"I don't get it!\"",
+              "feedback": "Using words is good! In class, raising your hand first helps the teacher hear everyone." }
+          ]
+        },
+        {
+          "id": "wait",
+          "title": "Waiting for the Teacher",
+          "scene": "✋ ⏳ 🧑‍🏫",
+          "prompt": "My teacher is helping another student. She says, \"I'll be there in a minute.\" What can I do?",
+          "choices": [
+            { "id": "a", "icon": "⏳", "kind": "great", "next": "explain",
+              "text": "Put my hand down and wait.",
+              "feedback": "Great waiting! Your teacher knows you need help and is coming." },
+            { "id": "b", "icon": "➡️", "kind": "great", "next": "explain",
+              "text": "Work on a question I do know while I wait.",
+              "feedback": "Smart! Doing a different question uses your waiting time well." },
+            { "id": "c", "icon": "👉", "kind": "tryAgain", "next": "explain",
+              "text": "Keep saying, \"Teacher! Teacher!\"",
+              "feedback": "Your teacher already heard you. Let's wait quietly for her to come." }
+          ]
+        },
+        {
+          "id": "explain",
+          "title": "Saying What I Need",
+          "scene": "🧑‍🏫 💬 🧒",
+          "prompt": "My teacher comes over and asks, \"How can I help?\" What can I say?",
+          "choices": [
+            { "id": "a", "icon": "💬", "kind": "great", "next": "help_done",
+              "text": "Point to it and say, \"I don't understand number 3.\"",
+              "feedback": "Perfect! Telling exactly what you need helps your teacher help you fast." },
+            { "id": "b", "icon": "🤷", "kind": "okay", "next": "help_done",
+              "text": "Say, \"I don't know.\"",
+              "feedback": "That is a start! Pointing to the part you are stuck on helps your teacher know what to explain." }
+          ]
+        },
+        {
+          "id": "help_done",
+          "title": "You Did It!",
+          "scene": "✋ 🎉",
+          "prompt": "Everyone needs help sometimes. Raise your hand, wait, and say what you need.",
+          "choices": [
+            { "id": "a", "icon": "🎉", "kind": "great", "next": null,
+              "text": "I can ask for help!",
+              "feedback": "Great job! Asking for help is a brave and smart thing to do." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "personal-space",
+      "title": "Personal Space",
+      "summary": "Learn about giving people room and asking before touching.",
+      "icon": "🫧",
+      "color": "#9ED2C6",
+      "skill": "Body Awareness",
+      "startPhaseID": "line",
+      "phases": [
+        {
+          "id": "line",
+          "title": "Standing in Line",
+          "scene": "🧒 🧒 🧒",
+          "prompt": "We are lining up for lunch. Everyone has a little bubble of space around them. Where should I stand?",
+          "choices": [
+            { "id": "a", "icon": "🫧", "kind": "great", "next": "hug",
+              "text": "About one arm's length behind the person in front.",
+              "feedback": "Great job! One arm's length gives everyone room to feel comfortable." },
+            { "id": "b", "icon": "🫸", "kind": "tryAgain", "next": "hug",
+              "text": "Right up close, touching their back.",
+              "feedback": "Being very close can make people feel squished. Try standing one arm's length away." }
+          ]
+        },
+        {
+          "id": "hug",
+          "title": "Asking Before Hugs",
+          "scene": "🧒 💗 🧒",
+          "prompt": "I am happy to see my friend and I want to give them a hug. What should I do?",
+          "choices": [
+            { "id": "a", "icon": "🙋", "kind": "great", "next": "said_no",
+              "text": "Ask, \"Can I give you a hug?\"",
+              "feedback": "Wonderful! Asking first shows you care about how your friend feels." },
+            { "id": "b", "icon": "🤗", "kind": "tryAgain", "next": "said_no",
+              "text": "Hug them without asking.",
+              "feedback": "Some people do not like surprise hugs. Asking first helps everyone feel safe." }
+          ]
+        },
+        {
+          "id": "said_no",
+          "title": "When Someone Says No",
+          "scene": "🧒 ✋ 🧒",
+          "prompt": "My friend says, \"No thanks, I don't want a hug.\" What can I do?",
+          "choices": [
+            { "id": "a", "icon": "✋", "kind": "great", "next": "space_done",
+              "text": "Say \"Okay!\" and give a high five or wave instead.",
+              "feedback": "Great! Respecting \"no\" is what good friends do. A wave is a fun way to say hi." },
+            { "id": "b", "icon": "🤗", "kind": "tryAgain", "next": "space_done",
+              "text": "Hug them anyway.",
+              "feedback": "When someone says no, we listen. Everyone gets to decide about their own body, including you." },
+            { "id": "c", "icon": "😢", "kind": "okay", "next": "space_done",
+              "text": "Feel sad and think they do not like me.",
+              "feedback": "It is okay to feel a little sad. Saying no to a hug does not mean they do not like you. They just want space." }
+          ]
+        },
+        {
+          "id": "space_done",
+          "title": "You Did It!",
+          "scene": "🫧 🎉",
+          "prompt": "Give people an arm's length of space, ask before hugs, and listen when someone says no.",
+          "choices": [
+            { "id": "a", "icon": "🎉", "kind": "great", "next": null,
+              "text": "I know about personal space!",
+              "feedback": "Fantastic! Respecting space helps everyone feel comfortable." }
+          ]
+        }
+      ]
+    }
+  ]
+}

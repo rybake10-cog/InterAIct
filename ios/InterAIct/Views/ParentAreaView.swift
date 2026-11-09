@@ -13,6 +13,7 @@ struct ParentAreaView: View {
             }
         }
         .fontDesign(.rounded)
+        .largeSheetOnIPad()
     }
 }
 

@@ -36,6 +36,7 @@ struct CalmCornerView: View {
             }
         }
         .fontDesign(.rounded)
+        .largeSheetOnIPad()
     }
 }
 
@@ -49,32 +50,38 @@ struct BreathingView: View {
     private let seconds = 4.0
 
     var body: some View {
-        VStack(spacing: 28) {
-            Spacer(minLength: 0)
-            ZStack {
-                Circle()
-                    .fill(Color(hex: "#9ED2C6").opacity(0.35))
-                    .frame(width: 300, height: 300)
-                Circle()
-                    .fill(Color(hex: "#5FB49C"))
-                    .frame(width: 280, height: 280)
-                    .scaleEffect(reduceMotion ? 0.8 : (inhaling ? 1 : 0.4))
-                    .opacity(reduceMotion ? (inhaling ? 1 : 0.5) : 1)
+        GeometryReader { geometry in
+            let balloon = max(120, min(300, geometry.size.width - 48, geometry.size.height * 0.45))
+            VStack(spacing: 28) {
+                Spacer(minLength: 0)
+                ZStack {
+                    Circle()
+                        .fill(Color(hex: "#9ED2C6").opacity(0.35))
+                        .frame(width: balloon, height: balloon)
+                    Circle()
+                        .fill(Color(hex: "#5FB49C"))
+                        .frame(width: balloon - 20, height: balloon - 20)
+                        .scaleEffect(reduceMotion ? 0.8 : (inhaling ? 1 : 0.4))
+                        .opacity(reduceMotion ? (inhaling ? 1 : 0.5) : 1)
+                }
+                .accessibilityHidden(true)
+                Text(inhaling ? "Breathe in…" : "Breathe out…")
+                    .font(.largeTitle.bold())
+                    .foregroundStyle(Color.ink)
+                    .transaction { $0.animation = nil }
+                    .accessibilityAddTraits(.updatesFrequently)
+                Text("Watch the balloon. Breathe in while it grows. Breathe out while it shrinks.")
+                    .font(.title3)
+                    .foregroundStyle(Color.ink.opacity(0.75))
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.horizontal, 32)
+                Text("Breaths: \(breaths)")
+                    .font(.headline)
+                    .foregroundStyle(Color.ink.opacity(0.6))
+                Spacer(minLength: 0)
             }
-            .accessibilityHidden(true)
-            Text(inhaling ? "Breathe in…" : "Breathe out…")
-                .font(.largeTitle.bold())
-                .foregroundStyle(Color.ink)
-                .accessibilityAddTraits(.updatesFrequently)
-            Text("Watch the balloon. Breathe in while it grows. Breathe out while it shrinks.")
-                .font(.title3)
-                .foregroundStyle(Color.ink.opacity(0.75))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
-            Text("Breaths: \(breaths)")
-                .font(.headline)
-                .foregroundStyle(Color.ink.opacity(0.6))
-            Spacer(minLength: 0)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .task {
             while !Task.isCancelled {
@@ -132,6 +139,7 @@ struct SensesView: View {
                     .font(.title2.bold())
                     .foregroundStyle(Color.ink)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                 SpeakButton(text: currentText)
             }
             .padding(.horizontal, 24)

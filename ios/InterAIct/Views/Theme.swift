@@ -65,14 +65,30 @@ struct BigButtonStyle: ButtonStyle {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
                 .frame(maxWidth: .infinity, minHeight: 60)
-                .foregroundStyle(prominent ? Color.white : color)
+                .foregroundStyle(prominent ? Color.white : Color.ink)
                 .background(
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
                         .fill(prominent ? color : color.opacity(0.15))
                 )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .strokeBorder(prominent ? Color.clear : color.opacity(0.6), lineWidth: 2)
+                )
                 .opacity(isEnabled ? 1 : 0.4)
                 .scaleEffect(configuration.isPressed ? 0.97 : 1)
                 .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        }
+    }
+}
+
+/// Lays buttons out side by side, or stacks them when their labels would have to wrap.
+struct AdaptiveButtonRow<Content: View>: View {
+    @ViewBuilder let content: Content
+
+    var body: some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 12) { content.lineLimit(1) }
+            VStack(spacing: 12) { content }
         }
     }
 }
@@ -92,5 +108,17 @@ struct CardBackground: ViewModifier {
 extension View {
     func cardBackground(cornerRadius: CGFloat = 24) -> some View {
         modifier(CardBackground(cornerRadius: cornerRadius))
+    }
+}
+
+extension View {
+    /// Shows a sheet as a large page on iPad instead of a small form sheet.
+    @ViewBuilder
+    func largeSheetOnIPad() -> some View {
+        if #available(iOS 18.0, *) {
+            presentationSizing(.page)
+        } else {
+            self
+        }
     }
 }

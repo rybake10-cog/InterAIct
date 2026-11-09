@@ -16,6 +16,10 @@ struct HomeView: View {
         return "\(hello) I'm \(avatar.shortName). What would you like to practice today?"
     }
 
+    private var starsText: String {
+        progress.stars == 1 ? "1 star" : "\(progress.stars) stars"
+    }
+
     var body: some View {
         NavigationStack(path: $path) {
             ScrollView {
@@ -23,13 +27,13 @@ struct HomeView: View {
                     CompanionBubble(avatar: avatar, text: greeting)
 
                     HStack(spacing: 12) {
-                        Label("\(progress.stars) stars", systemImage: "star.fill")
+                        Label(starsText, systemImage: "star.fill")
                             .font(.title3.bold())
                             .foregroundStyle(Color(hex: "#C98C1B"))
                             .padding(.horizontal, 18)
                             .frame(minHeight: 60)
                             .cardBackground(cornerRadius: 20)
-                            .accessibilityLabel("You have \(progress.stars) stars")
+                            .accessibilityLabel("You have \(starsText)")
                         Button {
                             showCalmCorner = true
                         } label: {
@@ -118,7 +122,7 @@ struct ScenarioCard: View {
             }
         }
         .padding(18)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .cardBackground()
         .accessibilityElement(children: .combine)
         .accessibilityHint("Starts practicing \(scenario.title)")

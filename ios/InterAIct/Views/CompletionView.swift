@@ -18,33 +18,35 @@ struct CompletionView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 24) {
-                Text("🌟")
-                    .font(.system(size: 110))
-                    .scaleEffect(celebrate || reduceMotion ? 1 : 0.4)
-                    .accessibilityHidden(true)
-                Text("You did it!")
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(Color.ink)
-                Label("+1 star  ·  \(progress.stars) total", systemImage: "star.fill")
-                    .font(.title2.bold())
-                    .foregroundStyle(Color(hex: "#C98C1B"))
-                CompanionBubble(avatar: avatar, text: message)
-                HStack(spacing: 12) {
-                    Button(action: onPlayAgain) {
-                        Label("Play again", systemImage: "arrow.clockwise")
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 24) {
+                    Text("🌟")
+                        .font(.system(size: 110))
+                        .scaleEffect(celebrate || reduceMotion ? 1 : 0.4)
+                        .accessibilityHidden(true)
+                    Text("You did it!")
+                        .font(.largeTitle.bold())
+                        .foregroundStyle(Color.ink)
+                    Label("+1 star  ·  \(progress.stars) total", systemImage: "star.fill")
+                        .font(.title2.bold())
+                        .foregroundStyle(Color(hex: "#C98C1B"))
+                    CompanionBubble(avatar: avatar, text: message)
+                    AdaptiveButtonRow {
+                        Button(action: onPlayAgain) {
+                            Label("Play again", systemImage: "arrow.clockwise")
+                        }
+                        .buttonStyle(BigButtonStyle(color: scenario.tint, prominent: false))
+                        Button(action: onDone) {
+                            Label("All done", systemImage: "checkmark")
+                        }
+                        .buttonStyle(BigButtonStyle(color: ChoiceKind.great.tint))
                     }
-                    .buttonStyle(BigButtonStyle(color: scenario.tint, prominent: false))
-                    Button(action: onDone) {
-                        Label("All done", systemImage: "checkmark")
-                    }
-                    .buttonStyle(BigButtonStyle(color: ChoiceKind.great.tint))
                 }
+                .padding(24)
+                .frame(maxWidth: 800)
+                .frame(maxWidth: .infinity, minHeight: geometry.size.height)
             }
-            .padding(24)
-            .frame(maxWidth: 800)
-            .frame(maxWidth: .infinity)
         }
         .sensoryFeedback(.success, trigger: celebrate)
         .task {

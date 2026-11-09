@@ -30,7 +30,7 @@ Run the tests with ⌘U, or from the command line:
 ```bash
 cd ios
 xcodebuild test -project InterAIct.xcodeproj -scheme InterAIct \
-  -destination 'platform=iOS Simulator,name=iPad (10th generation)'
+  -destination 'platform=iOS Simulator,name=iPad (A16)'
 ```
 
 To check the scenario content without Xcode, run `python3 tests/test_ios_scenarios.py` from the repo root.

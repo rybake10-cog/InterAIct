@@ -146,6 +146,12 @@ struct PhasePlayView: View {
                         onTryAgain: { session.tryAgain() },
                         onContinue: { session.advance() }
                     )
+                    .frame(maxWidth: .infinity)
+                    .background {
+                        LinearGradient(colors: [Color.appBackground.opacity(0), Color.appBackground],
+                                       startPoint: .top, endPoint: .center)
+                            .ignoresSafeArea(edges: .bottom)
+                    }
                     .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
                 }
             }
@@ -188,7 +194,7 @@ struct FeedbackPanel: View {
             }
             .accessibilityElement(children: .combine)
 
-            HStack(spacing: 12) {
+            AdaptiveButtonRow {
                 if canTryAgain {
                     Button(action: onTryAgain) {
                         Label("Try another way", systemImage: "arrow.uturn.backward")

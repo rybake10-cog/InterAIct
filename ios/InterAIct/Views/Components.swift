@@ -77,16 +77,19 @@ struct SceneView: View {
     let color: Color
     @Environment(AppSettings.self) private var settings
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var failedVideo: String?
 
     private var videoURL: URL? {
-        guard settings.showVideos, let video = phase.video else { return nil }
+        guard settings.showVideos, let video = phase.video, video != failedVideo else { return nil }
         return Bundle.main.url(forResource: video, withExtension: "mp4")
     }
 
     var body: some View {
         Group {
             if let videoURL {
-                LoopingVideoView(url: videoURL, loops: !reduceMotion)
+                LoopingVideoView(url: videoURL, loops: !reduceMotion) {
+                    failedVideo = phase.video
+                }
                     .aspectRatio(4 / 3, contentMode: .fit)
                     .background(Color.black.opacity(0.05))
             } else {

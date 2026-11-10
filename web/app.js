@@ -380,7 +380,11 @@
     if (!record) return;
     recordChoice(play.playID, record);
     renderInteractive();
-    const primary = document.querySelector('#feedback-dock [data-action="advance"], #feedback-dock [data-action="try-again"]');
+    const dock = document.getElementById("feedback-dock");
+    if (getComputedStyle(dock).position !== "sticky") {
+      dock.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "end" });
+    }
+    const primary = dock.querySelector('[data-action="advance"], [data-action="try-again"]');
     if (primary) primary.focus({ preventScroll: true });
     speaker.autoSpeak(`${L.KINDS[choice.kind].headline} ${choice.feedback}`);
   }
@@ -737,7 +741,10 @@
     if (!$grownUps.open || !document.getElementById("gate-entry")) return;
     if (/^\d$/.test(event.key)) gateKey(event.key);
     else if (event.key === "Backspace") actions["gate-clear"]();
-    else if (event.key === "Enter" && !event.target.closest("button")) gateSubmit();
+    else if (event.key === "Enter" && (gate.entry || !event.target.closest("button"))) {
+      event.preventDefault();
+      gateSubmit();
+    }
   });
 
   window.addEventListener("hashchange", route);

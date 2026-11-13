@@ -151,6 +151,25 @@
 
   const emptyProgress = () => ({ plays: [], feelings: [], stars: 0 });
 
+  // Combines two copies of saved progress (e.g. from two browser tabs) by record ID.
+  function mergeProgress(stored, local) {
+    const unionByID = (a, b, prefer) => {
+      const byID = new Map(a.map((r) => [r.id, r]));
+      b.forEach((r) => {
+        const existing = byID.get(r.id);
+        byID.set(r.id, existing && prefer ? prefer(existing, r) : r);
+      });
+      return [...byID.values()];
+    };
+    const morePlayed = (x, y) =>
+      (!!x.finishedAt !== !!y.finishedAt ? (x.finishedAt ? x : y) : (x.choices.length > y.choices.length ? x : y));
+    const plays = unionByID(stored.plays || [], local.plays || [], morePlayed)
+      .sort((x, y) => String(x.startedAt).localeCompare(String(y.startedAt)));
+    const feelings = unionByID(stored.feelings || [], local.feelings || [])
+      .sort((x, y) => String(x.date).localeCompare(String(y.date)));
+    return { plays, feelings, stars: plays.filter((p) => p.finishedAt).length };
+  }
+
   const completedScenarioIDs = (progress) =>
     new Set(progress.plays.filter((p) => p.finishedAt).map((p) => p.scenarioID));
 
@@ -173,6 +192,6 @@
   return {
     AVATARS, FEELINGS, MOMENTS, KINDS,
     shortName, avatarWithId, feelingWithId, findPhase,
-    validate, ScenarioSession, emptyProgress, completedScenarioIDs, stats,
+    validate, ScenarioSession, emptyProgress, mergeProgress, completedScenarioIDs, stats,
   };
 });

@@ -100,3 +100,15 @@ test("referenced videos exist", () => {
     }
   }
 });
+
+test("mergeProgress keeps records from both tabs and recounts stars", () => {
+  const a = { id: "a", scenarioID: "x", startedAt: "2026-01-01T00:00:00Z", finishedAt: "2026-01-01T00:05:00Z", choices: [{}] };
+  const b = { id: "b", scenarioID: "y", startedAt: "2026-01-01T00:01:00Z", finishedAt: "2026-01-01T00:06:00Z", choices: [{}] };
+  const stored = { plays: [a], feelings: [{ id: "f1", date: "2026-01-01T00:00:00Z" }], stars: 1 };
+  const local = { plays: [{ ...a, finishedAt: null, choices: [] }, b], feelings: [{ id: "f2", date: "2026-01-01T00:02:00Z" }], stars: 1 };
+  const merged = L.mergeProgress(stored, local);
+  assert.deepEqual(merged.plays.map((p) => p.id), ["a", "b"]);
+  assert.ok(merged.plays[0].finishedAt);
+  assert.deepEqual(merged.feelings.map((f) => f.id), ["f1", "f2"]);
+  assert.equal(merged.stars, 2);
+});

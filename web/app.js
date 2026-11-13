@@ -40,7 +40,10 @@
   const settings = load(SETTINGS_KEY, Object.assign({}, DEFAULT_SETTINGS));
   let progress = load(PROGRESS_KEY, L.emptyProgress());
   const saveSettings = () => save(SETTINGS_KEY, settings);
-  const saveProgress = () => save(PROGRESS_KEY, progress);
+  const saveProgress = () => {
+    progress = L.mergeProgress(load(PROGRESS_KEY, L.emptyProgress()), progress);
+    save(PROGRESS_KEY, progress);
+  };
   const trimmedName = () => settings.childName.trim();
   const currentAvatar = () => L.avatarWithId(settings.avatarID) || L.AVATARS[0];
   const starsText = () => (progress.stars === 1 ? "1 star" : `${progress.stars} stars`);
@@ -296,7 +299,7 @@
       video.addEventListener("error", fallback);
       if (video.error) fallback();
       const attempt = video.play();
-      if (attempt && attempt.catch) attempt.catch(() => {});
+      if (attempt && attempt.catch) attempt.catch((err) => { if (!err || err.name !== "AbortError") fallback(); });
     });
   }
 
@@ -725,7 +728,7 @@
     "reset-progress"() {
       if (!window.confirm("Reset all progress? Stars, practice history, and feelings check-ins will be deleted.")) return;
       progress = L.emptyProgress();
-      saveProgress();
+      save(PROGRESS_KEY, progress);
       renderDashboard();
     },
   };
@@ -739,15 +742,25 @@
 
   document.addEventListener("keydown", (event) => {
     if (!$grownUps.open || !document.getElementById("gate-entry")) return;
-    if (/^\d$/.test(event.key)) gateKey(event.key);
-    else if (event.key === "Backspace") actions["gate-clear"]();
-    else if (event.key === "Enter" && (gate.entry || !event.target.closest("button"))) {
+    if (/^\d$/.test(event.key)) {
+      gateKey(event.key);
+      $grownUps.querySelector('[data-action="gate-submit"]').focus();
+    } else if (event.key === "Backspace") actions["gate-clear"]();
+    else if (event.key === "Enter" && !event.target.closest("button")) {
       event.preventDefault();
       gateSubmit();
     }
   });
 
   window.addEventListener("hashchange", route);
+
+  window.addEventListener("storage", (event) => {
+    if (event.key !== PROGRESS_KEY && event.key !== null) return;
+    progress = load(PROGRESS_KEY, L.emptyProgress());
+    if ($grownUps.open) {
+      if (!document.getElementById("gate-entry")) renderDashboard();
+    } else if (settings.avatarID && !play.scenario) renderHome();
+  });
 
   // MARK: Start
 
